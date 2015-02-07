@@ -1,0 +1,11 @@
+happy
+salty
+sad
+cool
+funny
+embarassed
+troll
+sarcasm
+surprised
+bored
+confused
