@@ -1,6 +1,6 @@
 """
 capital_one_test.py - Class for testing whatever our project is supposed to do.
-msimo & mzamani - 2/5/15 - Python 2.7.6
+msimo & mzamani - 2/6/15 - Python 2.7.6
 VTHacksII - Capital One Testing
 """
 
@@ -20,7 +20,7 @@ def customer_query(api_domain, customer_key, api_key):
 	
 	for key in customer_key:
 		#query = ("/customers/{0}".format(key))
-		query = customer_queries[2].format(key)
+		query = customer_queries[1].format(key)
 		http_string = (api_domain + query + api_key)
 		req = requests.get(http_string)
 		print("Expected API call: {0}\nError Code: {1}".format(http_string, req.status_code))
