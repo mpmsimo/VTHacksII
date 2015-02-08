@@ -15,7 +15,9 @@ port = 6667
 nick = "darkiee"
 ident = "darkiee"
 realname = "darkiee"
-channel = "#sodapoppin"
+#channel = "#sodapoppin"
+#channel = "#wingsofdeath"
+channel = "#phantoml0rd"
 password = "oauth:h9loaxtbpmt712zzrr6rzfsnt2bns6"
 readbuffer = ""
 
