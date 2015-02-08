@@ -7,7 +7,13 @@ Python 2.7.6
 
 import sys, os
 
-def write_files(filename, counter):
+directory = (os.path.abspath(os.pardir))
+dir2 = directory + "/raw_data"
+print directory, dir2
+dir3 = directory + "/chat_transcript/"
+
+def write_files(filename):
+	counter = len(os.listdir(dir2)) + 1
 	print("write_files >> Count: {}".format(counter))
 	with open(filename) as f:
 		print("Opened file: {}".format(filename))
@@ -20,17 +26,15 @@ def write_files(filename, counter):
 			counter += 1
 
 def main():
-	directory = (os.path.abspath(os.pardir))
-	dir2 = directory + "/raw_data"
-	print directory, dir2
-	dir3 = directory + "/chat_transcript/"
-	counter = len(os.listdir(dir2)) + 1
-	print counter
 	print("Dir1: {}\nDir2: {}\nDir3: {}".format(directory, dir2, dir3)) 
+	filename = sys.argv[1]
+	write_files(os.path.join(dir3, filename))
+"""
 	for filename in os.listdir(dir3):
 		print("main >> Opened file: {}".format(filename))
 		if filename.endswith(".txt"):
-			write_files(os.path.join(dir3, filename), counter)
+			write_files(os.path.join(dir3, filename))
+"""
 
 if __name__ == "__main__":
 	main()
