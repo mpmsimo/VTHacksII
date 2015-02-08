@@ -5,36 +5,41 @@ Python 2.7.6
 Modified version of ircLogBot provided by TwistedMatrix
 """
 
-import socket
-import string
+import socket, string, time, os
 
-HOST="irc.twitch.tv"
-PORT=6667
-NICK="darkiee"
-IDENT="darkiee"
-REALNAME="darkiee"
-CHANNEL="#manvsgame"
-PASSWORD="oauth:h9loaxtbpmt712zzrr6rzfsnt2bns6"
-readbuffer=""
+directory = (os.path.abspath(os.pardir)+"/data/chat_transcript/")
+chat_dump = "chat_transcript_{}.txt"
 
-s=socket.socket( )
-s.connect((HOST, PORT))
-s.send("PASS %s\r\n" % PASSWORD)
-s.send("NICK %s\r\n" % NICK)
-s.send("USER %s %s bla :%s\r\n" % (IDENT, HOST, REALNAME))
-s.send("JOIN %s\r\n" % CHANNEL)
+hostname = "irc.twitch.tv"
+port = 6667
+nick = "darkiee"
+ident = "darkiee"
+realname = "darkiee"
+channel = "#sodapoppin"
+password = "oauth:h9loaxtbpmt712zzrr6rzfsnt2bns6"
+readbuffer = ""
 
-print("Connected to {}".format(CHANNEL))
+s = socket.socket()
+s.connect((hostname, port))
+s.send("PASS %s\r\n" % password)
+s.send("NICK %s\r\n" % nick)
+s.send("USER %s %s bla :%s\r\n" % (ident, hostname, realname))
+s.send("JOIN %s\r\n" % channel)
+
+print("Connected to {}".format(channel))
 
 while 1:
-    readbuffer=readbuffer+s.recv(1024)
-    temp=string.split(readbuffer, "\n")
-    readbuffer=temp.pop( )
+    readbuffer = readbuffer + s.recv(1024)
+    irc_chat = string.split(readbuffer, "\n")
+    readbuffer = irc_chat.pop()
 
-    for line in temp:
-        line=string.rstrip(line)
-        line=string.split(line)
+    chat_transcript_filename = (chat_dump.format(time.strftime("%Y%m%d-%H%M")))
+    for line in irc_chat:
+        line = string.rstrip(line)
+        line = string.split(line)
         if len(line) > 3:
-            print line
-        if(line[0]=="PING"):
-            s.send("PONG %s\r\n" % line[1])
+            line = line[3:]
+            line = (" ".join(line).lower())
+            f = open(directory+chat_transcript_filename, 'a+')
+            f.write(line[1:]+"\n")
+            print(line[1:])

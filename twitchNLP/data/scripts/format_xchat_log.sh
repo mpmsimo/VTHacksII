@@ -1,17 +1,12 @@
 #/usr/bin/bash
-filename=$1
-test_file=$2
-#test_file2="twitch_test2.log"
-#test_file3="twitch_test3.log"
+#usage format_xchat_log.sh raw_log.log file_out.txt
 
-#Displays all data containing 'PRIVMSG' string in column 3.
-#cat $filename | awk '$3 == "PRIVMSG"' > $test_file1
+log_file=$1
+parsed_data=$2
 
-#Subsitute column 1, 2 and 3 with nothing. (>>, gibberish, PRIVMSG)
-#awk '{$1=""; $2=""; $3=""; $4=""; sub("  ", " "); print}' $test_file1 > $test_file2
+#Displays all lines of file...
+#which contains the string "PRIVMSG" string in column 3.
+#Then subsitutes columns 1, 2 and 3 with nothing an empty string.
+#Afterwards deletes the first four characters from all lines in the file.
 
-#Deletes channel name and colon.
-#cat $test_file2 | sed -r 's/^.{4}//' > $test_file3
-
-#combined all three into a one line prints out to $test_file1
-cat $filename | awk '$3 == "PRIVMSG"' | awk '{$1=""; $2=""; $3=""; $4=""; sub("  ", " "); print}' | sed -r 's/^.{4}//' > $test_file
+cat $log_file | awk '$3 == "PRIVMSG"' | awk '{$1=""; $2=""; $3=""; $4=""; sub("  ", " "); print}' | sed -r 's/^.{4}//' > $parsed_data
