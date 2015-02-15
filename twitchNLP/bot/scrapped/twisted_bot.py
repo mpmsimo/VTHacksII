@@ -36,7 +36,7 @@ class LogBot(irc.IRCClient):
     """A logging IRC bot."""
     
     nickname = "darkiee"
-    password = "oauth:h9loaxtbpmt712zzrr6rzfsnt2bns6"
+    password = "oauth:redacted"
     
     def connectionMade(self):
         irc.IRCClient.connectionMade(self)
