@@ -18,8 +18,8 @@ realname = "darkiee"
 #channel = "#sodapoppin"
 #channel = "#wingsofdeath"
 channel = "#phantoml0rd"
-#oauth key has been change since
-password = "oauth:h9loaxtbpmt712zzrr6rzfsnt2bns6"
+#oauth key has been changed since
+password = "oauth:redacted"
 readbuffer = ""
 
 s = socket.socket()
